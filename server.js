@@ -16,6 +16,26 @@ app.get('/api/Plants', (req, res) => {
 	]);
 });
 
+app.get('/api/CheckPlant', (req, res) => {
+	console.log(req.query)
+
+	var intID = parseInt(req.query.plantid)
+
+	// key: plantid als stringn
+	if ( intID % 2 )
+	  res.status(400);
+	  else res.status(200);
+	  
+	res.send([
+		{
+		  "id": intID,
+		  "name": "string",
+		  "latitude": "string",
+		  "longitude": "string"
+		}
+	  ]);
+	});
+  
 app.get('/api/Plants/Search', (req, res) => {
 	console.log(req.query)
 
