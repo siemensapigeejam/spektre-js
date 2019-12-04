@@ -17,21 +17,24 @@ app.get('/api/Plants', (req, res) => {
 });
 
 app.get('/api/CheckPlant', (req, res) => {
+	// key: plantid als stringn
 	console.log(req.query)
 
-	var intID = parseInt(req.query.plantid)
+	var accessGranted = true
+	if ( req.query.plantid % 2 )
+	{
+		res.status(400);
+		accessGranted = false
+	}
+	else 
+	{
+		res.status(200);
+	}
 
-	// key: plantid als stringn
-	if ( intID % 2 )
-	  res.status(400);
-	  else res.status(200);
-	  
 	res.send([
 		{
-		  "id": intID,
-		  "name": "string",
-		  "latitude": "string",
-		  "longitude": "string"
+		  "id": req.query.plantid,
+		  "access": accessGranted
 		}
 	  ]);
 	});
